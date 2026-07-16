@@ -1,0 +1,11 @@
+# Local publish button — a personal tool, not part of the site.
+# Also keeps "git add -A" inside the script from committing the script itself.
+/Update Website.bat
+
+# Local dev tooling
+/.claude/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
