@@ -363,7 +363,83 @@
       "რატომ ცვლის ყველაფერს ვაზის შეშის ნაკვერჩხალი — პირდაპირ ჩვენი მანგალის ოსტატის, ლევანისგან.",
     "Behind Sofia's Daily Dessert Creations": "სოფიოს ყოველდღიური დესერტების კულისებში",
     "A peek into the pastry kitchen, where tradition meets a little modern whimsy.":
-      "ჩახედვა საკონდიტროში, სადაც ტრადიცია თანამედროვე ფანტაზიას ხვდება."
+      "ჩახედვა საკონდიტროში, სადაც ტრადიცია თანამედროვე ფანტაზიას ხვდება.",
+
+    /* ---------- Gallery ---------- */
+    "Gallery": "გალერეა",
+    "A Look Inside": "ერთი შემოხედვა",
+    "The food, the room and the garden — Varazi as our guests find it.":
+      "კერძები, დარბაზი და ბაღი — ვარაზი ისეთი, როგორსაც სტუმრები ხედავენ.",
+    "Photos": "ფოტოები",
+    "Video": "ვიდეო",
+    "All": "ყველა",
+    "Food & Drinks": "კერძები და სასმელები",
+    "Interior": "ინტერიერი",
+    "Exterior": "ექსტერიერი",
+    "View in menu": "იხილე მენიუში",
+    "View the Gallery": "იხილე გალერეა",
+    "Nothing here yet.": "აქ ჯერ არაფერია.",
+    "Reels and clips from our Instagram and YouTube.":
+      "რილები და კლიპები ჩვენი ინსტაგრამიდან და YouTube-იდან.",
+    "See It for Yourself": "ნახე საკუთარი თვალით",
+    "An Evening in the Garden": "საღამო ბაღში",
+    "Fire & Smoke: The Mangal": "ცეცხლი და კვამლი: მანგალი",
+    "Folding Khinkali by Hand": "ხინკლის ხელით დაკეცვა",
+    "The Perfect Pour": "იდეალური ჩამოსხმა",
+    "Khachapuri, Straight from the Oven": "ხაჭაპური პირდაპირ ღუმელიდან",
+    "A Sufra at Varazi": "სუფრა ვარაზში",
+
+    /* ---------- Instagram reels (home) ---------- */
+    "On Instagram": "ინსტაგრამზე",
+    "Life at Varazi,": "ცხოვრება ვარაზში,",
+    "Reel by Reel": "რილი რილზე",
+    "Sizzling mangal, garden evenings and the little moments in between — follow along":
+      "მბრდღვინავი მანგალი, საღამოები ბაღში და პატარა მომენტები — გამოგვყევი",
+    "Follow on Instagram": "გამოგვყევი ინსტაგრამზე",
+    "Beloved in Tbilisi since 1995": "თბილისის საყვარელი ადგილი 1995 წლიდან",
+
+    /* ---------- Vacancies ---------- */
+    "Vacancies": "ვაკანსიები",
+    "Join the": "შემოუერთდი",
+    "Varazi Team": "ვარაზის გუნდს",
+    "We are always glad to meet people who cook, pour and welcome with heart. Send us a few words about yourself.":
+      "ყოველთვის გვიხარია გავიცნოთ ადამიანები, ვინც გულით ამზადებს, ასხამს და მასპინძლობს. მოგვწერე ორიოდე სიტყვა შენს შესახებ.",
+    "Mangal Chef": "მანგალის ოსტატი",
+    "Live-fire grilling on the open mangal, evening shifts. Experience with mtsvadi and kebab preferred.":
+      "ღია მანგალზე შეწვა, საღამოს ცვლები. სასურველია მწვადისა და ქაბაბის გამოცდილება.",
+    "Waiter / Waitress": "ოფიციანტი",
+    "Garden and hall service. Georgian and English welcome — a warm welcome matters most.":
+      "მომსახურება ბაღსა და დარბაზში. ქართული და ინგლისური სასურველია — მთავარი თბილი მასპინძლობაა.",
+    "Bartender": "ბარმენი",
+    "Draught beer, Georgian wine and our seasonal cocktail list.":
+      "ჩამოსასხმელი ლუდი, ქართული ღვინო და ჩვენი სეზონური კოქტეილები.",
+    "Kitchen Assistant": "სამზარეულოს ასისტენტი",
+    "Prep and support across the Georgian kitchen. No experience required — we teach.":
+      "მომზადება და დახმარება ქართულ სამზარეულოში. გამოცდილება არ სჭირდება — გასწავლით.",
+    "Full time": "სრული განაკვეთი",
+    "Full / Part time": "სრული / ნახევარი განაკვეთი",
+    "Send Your CV": "გამოგზავნე CV",
+
+    /* ---------- Drinks (split menu) ---------- */
+    "Beer, Wine & Spirits": "ლუდი, ღვინო და სპირტიანი",
+    "Soft Drinks": "უალკოჰოლო",
+    "Juices & Soft Drinks": "წვენები და უალკოჰოლო სასმელები",
+    "Homemade lemonades, fresh juices and everything alcohol-free.":
+      "სახლური ლიმონათი, ახალი წვენები და ყველაფერი უალკოჰოლო.",
+    "Chacha (Georgian Grappa)": "ჭაჭა",
+    "The traditional finish to a Georgian feast.": "ქართული სუფრის ტრადიციული დასასრული.",
+    "Fresh Fruit Juice": "ახლადგამოწურული წვენი",
+    "Pressed to order from seasonal fruit.": "იწურება შეკვეთისთანავე, სეზონური ხილისგან.",
+    "Georgian Lemonade": "ქართული ლიმონათი",
+    "Tarkhuna, cream or pear — the classics.": "ტარხუნა, კრემი ან მსხალი — კლასიკა.",
+    "Sparkling / Still Water": "გაზიანი / უგაზო წყალი",
+    "Borjomi, Nabeghlavi or still spring water.": "ბორჯომი, ნაბეღლავი ან უგაზო წყაროს წყალი.",
+
+    /* ---------- WhatsApp ---------- */
+    "Typically replies within an hour": "ჩვეულებრივ პასუხობს ერთ საათში",
+    "Questions about a table, a large group or the garden? Message us on WhatsApp.":
+      "კითხვები მაგიდაზე, დიდ კომპანიაზე ან ბაღზე? მოგვწერე WhatsApp-ზე.",
+    "Chat on WhatsApp": "დაგვიკავშირდი WhatsApp-ით"
   };
 
   /* Build the document and translate text nodes -------------------- */

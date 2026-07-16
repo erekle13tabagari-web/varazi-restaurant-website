@@ -59,6 +59,7 @@
   --radius:14px;
   --radius-lg:22px;
   --ease:cubic-bezier(.22,.61,.36,1);
+  --fab-edge:clamp(14px,3vw,34px);   /* inset for the stacked WhatsApp / back-to-top buttons */
 }
 
 /* ---------- Reset ---------- */
@@ -82,8 +83,8 @@ ul{list-style:none}
 
 /* ---------- Typography ---------- */
 h1,h2,h3,h4{font-family:var(--serif);font-weight:700;color:var(--cream);line-height:1.1;letter-spacing:-.2px}
-.display{font-size:clamp(2.6rem,6.5vw,5.6rem);font-weight:800;letter-spacing:-.5px}
-h2.section-title{font-size:clamp(2rem,4.5vw,3.4rem)}
+.display{font-size:clamp(2.3rem,5.4vw,4.5rem);font-weight:800;letter-spacing:-.5px}
+h2.section-title{font-size:clamp(1.8rem,3.6vw,2.7rem)}
 .eyebrow{
   font-family:var(--sans);font-weight:500;font-size:.74rem;
   letter-spacing:.32em;text-transform:uppercase;color:var(--gold);
@@ -98,7 +99,7 @@ h2.section-title{font-size:clamp(2rem,4.5vw,3.4rem)}
 /* ---------- Layout helpers ---------- */
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad)}
 section{position:relative}
-.section-pad{padding-block:clamp(64px,9vw,130px)}
+.section-pad{padding-block:clamp(48px,6.5vw,96px)}
 .center{text-align:center}
 .muted{color:var(--muted)}
 
@@ -198,7 +199,7 @@ html.lang-ka .footer .brand-logo{width:126px}
     linear-gradient(90deg,var(--green-950) 0%,rgba(14,21,9,.78) 38%,rgba(14,21,9,.25) 70%,rgba(14,21,9,.45) 100%),
     linear-gradient(0deg,var(--green-950) 2%,transparent 30%);
 }
-.hero-inner{position:relative;z-index:2;width:100%;padding-block:120px 60px}
+.hero-inner{position:relative;z-index:2;width:100%;padding-block:104px 48px}
 .hero-dishes{display:flex;gap:1.2rem;margin-bottom:2.2rem}
 .hero-dishes img{
   width:clamp(78px,9vw,120px);height:clamp(78px,9vw,120px);border-radius:50%;
@@ -221,7 +222,7 @@ html.lang-ka .footer .brand-logo{width:126px}
 /* ============================================================
    SECTION HEADER (shared)
    ============================================================ */
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(2.4rem,5vw,4rem)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(1.8rem,3.6vw,2.8rem)}
 .sec-head .titles{max-width:40ch}
 .sec-head h2{margin-top:1rem}
 .sec-head .note{max-width:34ch;color:var(--text);font-size:.96rem}
@@ -304,7 +305,7 @@ html.lang-ka .footer .brand-logo{width:126px}
   font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2vw,1.5rem);
   color:var(--cream);border-left:2px solid var(--gold-deep);padding-left:1.4rem;margin:1.6rem 0 2rem;line-height:1.5
 }
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:clamp(3rem,6vw,5rem)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:clamp(2.2rem,4vw,3.4rem)}
 .stat{background:var(--green-900);padding:2rem 1.6rem;transition:background .4s}
 .stat:hover{background:var(--green-850)}
 .stat h3{font-size:1.15rem;color:var(--gold);margin-bottom:.5rem}
@@ -345,7 +346,7 @@ html.lang-ka .footer .brand-logo{width:126px}
 /* ============================================================
    FOOTER
    ============================================================ */
-.footer{background:var(--green-900);border-top:1px solid var(--line);padding-top:clamp(3.5rem,7vw,6rem)}
+.footer{background:var(--green-900);border-top:1px solid var(--line);padding-top:clamp(2.8rem,5vw,4.4rem)}
 .footer-grid{display:grid;grid-template-columns:1.3fr 1.3fr .8fr .8fr 1.4fr;gap:2.5rem}
 .footer .brand{margin-bottom:1.2rem}
 .footer .about{font-size:.9rem;color:var(--muted);max-width:32ch;margin-bottom:1.6rem}
@@ -366,11 +367,11 @@ html.lang-ka .footer .brand-logo{width:126px}
 .news input::placeholder{color:var(--muted)}
 .news button{width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--green-900);display:grid;place-items:center;flex:none;transition:.3s}
 .news button:hover{background:var(--gold-bright)}
-.footer-bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:clamp(3rem,5vw,4.5rem);padding:1.8rem 0;font-size:.82rem;color:var(--muted)}
+.footer-bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:clamp(2.2rem,4vw,3.2rem);padding:1.5rem 0;font-size:.82rem;color:var(--muted)}
 
 /* ---------- Back to top ---------- */
 .back-to-top{
-  position:fixed;right:clamp(18px,3vw,34px);bottom:clamp(18px,3vw,34px);z-index:90;
+  position:fixed;right:var(--fab-edge);bottom:var(--fab-edge);z-index:90;
   width:48px;height:48px;border-radius:50%;display:grid;place-items:center;
   background:rgba(239,233,215,.92);color:var(--green-900);
   border:1px solid rgba(255,255,255,.45);box-shadow:0 10px 30px rgba(0,0,0,.35);
@@ -385,10 +386,10 @@ html.lang-ka .footer .brand-logo{width:126px}
 /* ============================================================
    PAGE HERO (inner pages)
    ============================================================ */
-.page-hero{min-height:62vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding-top:80px}
+.page-hero{min-height:52vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding-top:80px}
 .page-hero .hero-bg::after{background:linear-gradient(0deg,var(--green-950),rgba(14,21,9,.55)),radial-gradient(ellipse at center,transparent,rgba(14,21,9,.5))}
 .page-hero .inner{position:relative;z-index:2;max-width:760px;padding-inline:var(--pad)}
-.page-hero h1{margin:1.2rem 0;font-size:clamp(2.4rem,6vw,4.6rem)}
+.page-hero h1{margin:1.2rem 0;font-size:clamp(2.1rem,4.6vw,3.6rem)}
 .page-hero .deco-title{display:inline-flex;align-items:center;gap:1.2rem}
 .page-hero .deco-title::before,.page-hero .deco-title::after{content:"";width:clamp(30px,8vw,80px);height:1px;background:var(--gold-deep)}
 
@@ -429,7 +430,7 @@ html.lang-ka .footer .brand-logo{width:126px}
 }
 .menu-tabs button:hover{border-color:var(--gold);color:var(--cream)}
 .menu-tabs button.active{background:var(--gold);color:var(--green-900);border-color:var(--gold)}
-.menu-cat{margin-bottom:clamp(3.5rem,7vw,6rem);scroll-margin-top:120px}
+.menu-cat{margin-bottom:clamp(2.6rem,5vw,4.2rem);scroll-margin-top:110px}
 .menu-cat .cat-head{display:flex;align-items:center;gap:1.5rem;margin-bottom:2.6rem}
 .menu-cat .cat-head .cimg{width:84px;height:84px;border-radius:50%;object-fit:cover;border:1px solid var(--line-strong);flex:none}
 .menu-cat .cat-head h2{font-size:clamp(1.8rem,3.5vw,2.6rem)}
@@ -489,6 +490,131 @@ html.lang-ka .footer .brand-logo{width:126px}
 .post p{font-size:.9rem;color:var(--muted)}
 
 /* ============================================================
+   GALLERY PAGE
+   ============================================================ */
+.gallery-tabs{display:flex;gap:.6rem;justify-content:center;margin-bottom:clamp(1.4rem,2.6vw,2.1rem)}
+.gallery-tabs button{padding:.62em 1.8em;border-radius:999px;border:1px solid var(--line-strong);font-size:.9rem;color:var(--text);letter-spacing:.06em;transition:.3s}
+.gallery-tabs button:hover{border-color:var(--gold);color:var(--cream)}
+.gallery-tabs button.active{background:var(--gold);color:var(--green-900);border-color:var(--gold)}
+.gal-panel{display:none}
+.gal-panel.active{display:block}
+.gal-filters{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:clamp(1.4rem,2.6vw,2.1rem)}
+.gal-filters button{padding:.45em 1.15em;border-radius:999px;border:1px solid var(--line);font-size:.8rem;color:var(--muted);transition:.3s}
+.gal-filters button:hover{border-color:var(--gold);color:var(--cream)}
+.gal-filters button.active{border-color:var(--gold);color:var(--gold);background:rgba(214,203,157,.08)}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.gal-item{position:relative;display:block;overflow:hidden;border-radius:var(--radius);aspect-ratio:4/5;background:var(--green-900)}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.gal-item:hover img{transform:scale(1.07)}
+.gal-item[hidden]{display:none}
+/* Food tiles are links through to the matching menu category */
+.gal-tag{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;padding:1.6rem .9rem .9rem;
+  background:linear-gradient(0deg,rgba(14,21,9,.92),transparent);
+  font-size:.82rem;color:var(--cream);display:flex;flex-direction:column;gap:.15rem;
+  opacity:0;transform:translateY(6px);transition:opacity .35s var(--ease),transform .35s var(--ease)
+}
+.gal-item:hover .gal-tag,.gal-item:focus-visible .gal-tag{opacity:1;transform:none}
+.gal-tag em{font-style:normal;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.gal-empty{display:none;text-align:center;color:var(--muted);padding:3rem 0}
+.gal-note{text-align:center;color:var(--muted);font-size:.92rem;margin-bottom:clamp(1.4rem,2.5vw,2rem)}
+
+/* ---------- Gallery: video ---------- */
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.video-card{position:relative;display:block;border-radius:var(--radius);overflow:hidden;aspect-ratio:16/9;background:var(--green-900);border:1px solid var(--line)}
+.video-card img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.video-card:hover img{transform:scale(1.06)}
+.video-card iframe{width:100%;height:100%;border:0;display:block}
+/* Only the poster/facade cards get the scrim — a real <div class="video-card"><iframe> stays clickable */
+a.video-card::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,rgba(14,21,9,.85),transparent 60%)}
+.video-play{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;
+  width:54px;height:54px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(239,233,215,.92);color:var(--green-900);
+  transition:transform .35s var(--ease),background .3s
+}
+.video-play svg{width:22px;height:22px;margin-left:2px}
+.video-card:hover .video-play{transform:translate(-50%,-50%) scale(1.1);background:var(--gold)}
+.video-cap{position:absolute;left:1.1rem;right:1.1rem;bottom:.9rem;z-index:2;font-size:.9rem;color:var(--cream);font-family:var(--serif)}
+
+/* ============================================================
+   INSTAGRAM REELS
+   ============================================================ */
+.reels{background:var(--green-900)}
+.reels .ig-handle{color:var(--gold);border-bottom:1px solid transparent;transition:border-color .3s}
+.reels .ig-handle:hover{border-bottom-color:var(--gold)}
+.reels-track{
+  display:grid;grid-auto-flow:column;grid-auto-columns:clamp(150px,17vw,200px);gap:1rem;
+  overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.6rem;scrollbar-width:thin
+}
+.reels-track::-webkit-scrollbar{height:6px}
+.reels-track::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:99px}
+.reel-card{position:relative;display:block;border-radius:var(--radius);overflow:hidden;aspect-ratio:9/16;scroll-snap-align:start;background:var(--green-850)}
+.reel-card img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.reel-card:hover img{transform:scale(1.07)}
+.reel-card::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,rgba(14,21,9,.6),transparent 55%)}
+.reel-play{
+  position:absolute;right:.7rem;bottom:.7rem;z-index:2;width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(14,21,9,.6);backdrop-filter:blur(6px);
+  border:1px solid var(--line);color:var(--cream);transition:.3s
+}
+.reel-play svg{width:15px;height:15px;margin-left:1px}
+.reel-card:hover .reel-play{background:var(--gold);color:var(--green-900);border-color:var(--gold)}
+
+/* ---------- Rotating star ---------- */
+.spin-star{display:inline-block;animation:spin-star 9s linear infinite}
+@keyframes spin-star{to{transform:rotate(360deg)}}
+
+/* ============================================================
+   VACANCIES
+   ============================================================ */
+.vacancy-list{border-top:1px solid var(--line)}
+.vacancy{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.4rem 0;border-bottom:1px solid var(--line);transition:padding .35s var(--ease)}
+.vacancy:hover{padding-left:.8rem}
+.vacancy .v-main h3{font-size:1.15rem;margin-bottom:.25rem}
+.vacancy .v-main p{font-size:.86rem;color:var(--muted);max-width:60ch}
+.vacancy .v-type{flex:none;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line-strong);padding:.35em .9em;border-radius:999px;white-space:nowrap}
+
+/* ============================================================
+   WHATSAPP FLOATING CONTACT
+   ============================================================ */
+/* Stacked above the back-to-top button, which owns the bottom-right corner.
+   Declared as the default so browsers without :has() never overlap the two. */
+.wa-fab{
+  position:fixed;right:var(--fab-edge);bottom:calc(var(--fab-edge) + 58px);z-index:95;
+  width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+  background:#25D366;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.4);
+  transition:transform .35s var(--ease),box-shadow .3s,bottom .35s var(--ease)
+}
+.wa-fab svg{width:27px;height:27px}
+.wa-fab:hover{transform:translateY(-3px) scale(1.05)}
+.wa-pop{
+  position:fixed;right:var(--fab-edge);bottom:calc(var(--fab-edge) + 124px);z-index:96;
+  width:min(300px,calc(100vw - 2 * var(--fab-edge)));background:var(--green-850);border:1px solid var(--line);
+  border-radius:var(--radius);padding:1.2rem;box-shadow:0 24px 60px rgba(0,0,0,.5);
+  opacity:0;transform:translateY(10px) scale(.97);pointer-events:none;transform-origin:100% 100%;
+  transition:opacity .3s var(--ease),transform .3s var(--ease),bottom .35s var(--ease)
+}
+.wa-pop.open{opacity:1;transform:none;pointer-events:auto}
+/* Back-to-top only appears after ~2 screens of scroll; until then WhatsApp
+   drops into the corner rather than floating above an empty slot. */
+body:not(:has(.back-to-top.show)) .wa-fab{bottom:var(--fab-edge)}
+body:not(:has(.back-to-top.show)) .wa-pop{bottom:calc(var(--fab-edge) + 66px)}
+.wa-pop .wa-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem}
+.wa-pop .wa-avatar{width:38px;height:38px;border-radius:50%;background:#25D366;display:grid;place-items:center;color:#fff;flex:none}
+.wa-pop .wa-avatar svg{width:21px;height:21px}
+.wa-pop h4{font-size:.98rem}
+.wa-pop .wa-status{font-size:.72rem;color:var(--sage)}
+.wa-pop p{font-size:.86rem;color:var(--muted);margin-bottom:1rem}
+.wa-pop .wa-cta{display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:44px;background:#25D366;color:#fff;font-size:.85rem;font-weight:500;padding:.7em 1em;border-radius:999px;transition:.3s}
+.wa-pop .wa-cta:hover{background:#1fb855}
+.wa-close{position:absolute;top:.6rem;right:.7rem;width:24px;height:24px;display:grid;place-items:center;color:var(--muted);border-radius:50%;transition:.3s}
+/* Small X, thumb-sized hit area */
+.wa-close::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px}
+.wa-close svg{width:13px;height:13px}
+.wa-close:hover{color:var(--cream);background:rgba(214,203,157,.1)}
+
+/* ============================================================
    SCROLL REVEAL
    ============================================================ */
 /* Content is visible by default; only hidden (for animation) when JS is active.
@@ -506,12 +632,16 @@ html.js .reveal.in{opacity:1;transform:none}
   .nav-toggle{display:flex}
   .nav-mobile{
     position:fixed;inset:0;z-index:99;background:rgba(14,21,9,.97);backdrop-filter:blur(10px);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.3rem;
     opacity:0;pointer-events:none;transition:opacity .4s
   }
   .nav-mobile.open{opacity:1;pointer-events:auto}
-  .nav-mobile a{font-family:var(--serif);font-size:1.8rem;color:var(--cream)}
-  .nav-mobile .btn{margin-top:1rem}
+  /* :not(.btn) matters — .btn pads in em, so inheriting this size balloons it */
+  .nav-mobile a:not(.btn){
+    font-family:var(--serif);font-size:1.35rem;color:var(--cream);
+    min-height:44px;display:flex;align-items:center
+  }
+  .nav-mobile .btn{margin-top:.6rem;font-size:.95rem}
   .menu-feature,.story,.reserve-cta,.reserve-wrap{grid-template-columns:1fr}
   .reserve-cta .pic,.reserve-pic{min-height:300px;order:-1}
   .stats{grid-template-columns:1fr 1fr}
@@ -524,6 +654,9 @@ html.js .reveal.in{opacity:1;transform:none}
   .t-item:nth-child(even) .t-img{order:0}
   .t-item .dot{left:18px}
   .menu-feature-img{aspect-ratio:16/10}
+  .gal-grid{grid-template-columns:repeat(3,1fr)}
+  .video-grid{grid-template-columns:repeat(2,1fr)}
+  .vacancy{flex-direction:column;align-items:flex-start;gap:.6rem}
 }
 @media(max-width:560px){
   .team-grid{grid-template-columns:1fr}
@@ -533,4 +666,47 @@ html.js .reveal.in{opacity:1;transform:none}
   .sec-head{flex-direction:column;align-items:flex-start}
   h2.section-title{font-size:1.6rem}
   html.lang-ka .section-title{font-size:1.4rem}
+  .gal-grid{grid-template-columns:repeat(2,1fr)}
+  .video-grid{grid-template-columns:1fr}
+}
+
+/* ============================================================
+   PHONE-FIRST ERGONOMICS
+   Touch targets are kept at 44px minimum, and any strip that would
+   wrap into several rows on a phone becomes a single swipeable row.
+   ============================================================ */
+@media(max-width:980px){
+  /* Hit areas grow; the visual size of the mark stays put */
+  .nav-toggle{position:relative}
+  .nav-toggle::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px}
+  .lang-switch-mobile button{min-height:44px;display:inline-flex;align-items:center}
+  .nav .brand{min-height:44px}  /* the logo is the Home button now */
+  .footer .socials{gap:.6rem}
+  .footer .socials a{width:44px;height:44px}
+  .footer .col a{min-height:44px;display:flex;align-items:center}
+  .map-link{min-height:44px;display:inline-flex;align-items:center}
+  .menu-tabs button,.gallery-tabs button,.gal-filters button{min-height:44px}
+
+  /* Category strips: one swipeable row, bleeding to the screen edges,
+     instead of four stacked rows eating the fold */
+  .menu-tabs,.gal-filters{
+    flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;
+    scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+    margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad);
+  }
+  .menu-tabs::-webkit-scrollbar,.gal-filters::-webkit-scrollbar{display:none}
+  .menu-tabs button,.gal-filters button{flex:none;scroll-snap-align:start}
+}
+
+/* Touch devices have no cursor to steer the signature marquee with,
+   so it becomes a normal swipe strip (the JS marquee bows out to match). */
+@media(hover:none){
+  .sig-track-wrap{overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .sig-track-wrap::-webkit-scrollbar{display:none}
+  .sig-track{touch-action:auto;cursor:default;padding-inline:var(--pad)}
+  .sig-card{scroll-snap-align:center}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .spin-star{animation:none}
 }

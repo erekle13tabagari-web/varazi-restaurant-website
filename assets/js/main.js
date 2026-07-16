@@ -48,9 +48,12 @@
     }, 1800);
   });
 
-  /* ---- Signature dishes: infinite marquee, mouse-steered on hover ---- */
+  /* ---- Signature dishes: infinite marquee, mouse-steered on hover ----
+     Skipped on touch devices: there is no cursor to steer with, so the CSS
+     turns the same markup into a native swipe strip instead. */
   const track = document.querySelector('.sig-track');
-  if (track) {
+  const coarsePointer = window.matchMedia && window.matchMedia('(hover:none)').matches;
+  if (track && !coarsePointer) {
     const viewport = track.parentElement;
     const originals = [].slice.call(track.children);
     // Duplicate the cards so the loop is seamless
@@ -159,6 +162,66 @@
       if (input) { input.value = ''; input.placeholder = 'Subscribed ✓'; }
     });
   });
+
+  /* ---- Gallery page: Photos/Video panels + photo category filters ---- */
+  const galTabs = document.querySelectorAll('.gallery-tabs button');
+  if (galTabs.length) {
+    const panels = document.querySelectorAll('.gal-panel');
+    const filters = document.querySelectorAll('.gal-filters button');
+    const items = document.querySelectorAll('.gal-grid .gal-item');
+    const empty = document.querySelector('.gal-empty');
+
+    const showPanel = (name) => {
+      galTabs.forEach(b => b.classList.toggle('active', b.dataset.panel === name));
+      panels.forEach(p => p.classList.toggle('active', p.id === name));
+    };
+    const applyFilter = (cat) => {
+      filters.forEach(b => b.classList.toggle('active', b.dataset.filter === cat));
+      let shown = 0;
+      items.forEach(el => {
+        const show = cat === 'all' || el.dataset.cat === cat;
+        el.hidden = !show;
+        if (show) shown++;
+      });
+      if (empty) empty.style.display = shown ? 'none' : 'block';
+    };
+
+    galTabs.forEach(b => b.addEventListener('click', () => showPanel(b.dataset.panel)));
+    filters.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
+
+    // Deep links: #video, #food, #interior, #exterior — used by "The Ambiance" on the home page
+    const fromHash = () => {
+      const h = (location.hash || '').replace('#', '');
+      if (h === 'video') { showPanel('video'); return true; }
+      if (h === 'food' || h === 'interior' || h === 'exterior') { showPanel('photos'); applyFilter(h); return true; }
+      return false;
+    };
+    if (fromHash()) {
+      const top = document.querySelector('#gallery-top');
+      if (top) requestAnimationFrame(() => top.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    }
+    window.addEventListener('hashchange', fromHash);
+  }
+
+  /* ---- WhatsApp floating contact ---- */
+  const waFab = document.querySelector('.wa-fab');
+  const waPop = document.querySelector('.wa-pop');
+  if (waFab && waPop) {
+    const setOpen = (open) => {
+      waPop.classList.toggle('open', open);
+      waFab.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    waFab.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setOpen(!waPop.classList.contains('open'));
+    });
+    const waClose = waPop.querySelector('.wa-close');
+    if (waClose) waClose.addEventListener('click', () => setOpen(false));
+    document.addEventListener('click', (e) => {
+      if (!waPop.contains(e.target) && !waFab.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+  }
 
   /* ---- Footer year ---- */
   const y = document.querySelector('#year');
