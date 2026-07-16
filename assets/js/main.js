@@ -136,21 +136,71 @@
     cats.forEach(c => catObs.observe(c));
   }
 
+  /* ---- Instagram reels: arrows + edge fades in place of a scrollbar ---- */
+  const reelsTrack = document.querySelector('.reels-track');
+  const reelsView = reelsTrack && reelsTrack.closest('.reels-viewport');
+  if (reelsTrack && reelsView) {
+    const prev = reelsView.querySelector('.reels-nav.prev');
+    const next = reelsView.querySelector('.reels-nav.next');
+
+    // Travel two cards at a time, but never more than a screenful
+    const step = () => {
+      const card = reelsTrack.querySelector('.reel-card');
+      const gap = parseFloat(getComputedStyle(reelsTrack).columnGap) || 16;
+      const one = card ? card.getBoundingClientRect().width + gap : 200;
+      return Math.min(one * 2, reelsTrack.clientWidth);
+    };
+    const update = () => {
+      const max = reelsTrack.scrollWidth - reelsTrack.clientWidth;
+      const x = reelsTrack.scrollLeft;
+      const atStart = x <= 4, atEnd = x >= max - 4;
+      reelsView.classList.toggle('can-prev', !atStart);
+      reelsView.classList.toggle('can-next', !atEnd && max > 4);
+      if (prev) prev.disabled = atStart;
+      if (next) next.disabled = atEnd || max <= 4;
+    };
+
+    if (prev) prev.addEventListener('click', () => reelsTrack.scrollBy({ left: -step(), behavior: 'smooth' }));
+    if (next) next.addEventListener('click', () => reelsTrack.scrollBy({ left: step(), behavior: 'smooth' }));
+    reelsTrack.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    window.addEventListener('load', update);
+    update();
+  }
+
+  /* ---- Gallery tiles: spin the brand mark until each photo arrives ---- */
+  document.querySelectorAll('.gal-item img').forEach(img => {
+    const tile = img.closest('.gal-item');
+    if (!tile || img.complete) return;
+    tile.classList.add('is-loading');
+    const done = () => tile.classList.remove('is-loading');
+    img.addEventListener('load', done, { once: true });
+    img.addEventListener('error', done, { once: true });
+  });
+
   /* ---- Reservation form (demo handler) ---- */
   const form = document.querySelector('#reservation-form');
   if (form) {
     const note = form.querySelector('.form-note');
+    const submit = form.querySelector('[type=submit]');
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const first = ((((form.querySelector('[name=name]') || {}).value) || '').trim().split(' ')[0]) || '';
       const ka = window.__varaziLang === 'ka';
-      if (note) {
-        note.textContent = ka
-          ? `მადლობა${first ? ', ' + first : ''}! თქვენი ჯავშანი მიღებულია — მალე დაგიდასტურებთ ტელეფონით.`
-          : `Thank you${first ? ', ' + first : ''} — your table request has been received. We will confirm by phone shortly.`;
-        note.classList.add('show');
-      }
-      form.reset();
+      if (note) note.classList.remove('show');
+
+      // Show the mark turning while the request is "sent", then confirm.
+      if (submit) submit.classList.add('is-sending');
+      window.setTimeout(() => {
+        if (submit) submit.classList.remove('is-sending');
+        if (note) {
+          note.textContent = ka
+            ? `მადლობა${first ? ', ' + first : ''}! თქვენი ჯავშანი მიღებულია — მალე დაგიდასტურებთ ტელეფონით.`
+            : `Thank you${first ? ', ' + first : ''} — your table request has been received. We will confirm by phone shortly.`;
+          note.classList.add('show');
+        }
+        form.reset();
+      }, 900);
     });
   }
 

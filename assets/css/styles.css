@@ -111,6 +111,7 @@ section{position:relative}
   transition:all .35s var(--ease);white-space:nowrap;
 }
 .btn .ico{
+  position:relative;
   display:grid;place-items:center;width:1.9em;height:1.9em;border-radius:50%;
   transition:transform .4s var(--ease),background .35s;
 }
@@ -432,7 +433,19 @@ html.lang-ka .footer .brand-logo{width:126px}
 .menu-tabs button.active{background:var(--gold);color:var(--green-900);border-color:var(--gold)}
 .menu-cat{margin-bottom:clamp(2.6rem,5vw,4.2rem);scroll-margin-top:110px}
 .menu-cat .cat-head{display:flex;align-items:center;gap:1.5rem;margin-bottom:2.6rem}
-.menu-cat .cat-head .cimg{width:84px;height:84px;border-radius:50%;object-fit:cover;border:1px solid var(--line-strong);flex:none}
+/* Category mark — line icons in place of the old photo thumbnails.
+   The icon box is sized in px, not %: the portrait icons (bottle, tall glass)
+   have no definite height to resolve a percentage against, so they would size
+   from their own ratio and spill out of the circle. */
+.menu-cat .cat-head .cicon{
+  width:84px;height:84px;border-radius:50%;flex:none;
+  display:grid;place-items:center;
+  border:1px solid var(--line-strong);background:var(--green-900);
+}
+.menu-cat .cat-head .cicon img{width:46px;height:46px;object-fit:contain;display:block}
+/* Categories still waiting on artwork show the brand mark instead */
+.menu-cat .cat-head .cicon.is-placeholder{opacity:.5}
+.menu-cat .cat-head .cicon.is-placeholder img{width:30px;height:30px}
 .menu-cat .cat-head h2{font-size:clamp(1.8rem,3.5vw,2.6rem)}
 .menu-cat .cat-head p{font-size:.9rem;color:var(--muted);margin-top:.3rem}
 .dish-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem 3.5rem}
@@ -543,12 +556,44 @@ a.video-card::after{content:"";position:absolute;inset:0;pointer-events:none;bac
 .reels{background:var(--green-900)}
 .reels .ig-handle{color:var(--gold);border-bottom:1px solid transparent;transition:border-color .3s}
 .reels .ig-handle:hover{border-bottom-color:var(--gold)}
+/* The strip scrolls natively (swipe / trackpad / arrows) but the browser
+   scrollbar is hidden — edge fades and hover arrows carry the affordance. */
+.reels-viewport{position:relative}
 .reels-track{
   display:grid;grid-auto-flow:column;grid-auto-columns:clamp(150px,17vw,200px);gap:1rem;
-  overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.6rem;scrollbar-width:thin
+  overflow-x:auto;scroll-snap-type:x proximity;scroll-behavior:smooth;
+  scrollbar-width:none;-ms-overflow-style:none;
 }
-.reels-track::-webkit-scrollbar{height:6px}
-.reels-track::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:99px}
+.reels-track::-webkit-scrollbar{display:none}
+
+/* Fades tell you the strip continues; they only show on the side you can travel */
+.reels-viewport::before,.reels-viewport::after{
+  content:"";position:absolute;top:0;bottom:0;width:clamp(40px,7vw,80px);z-index:2;
+  pointer-events:none;opacity:0;transition:opacity .35s var(--ease)
+}
+.reels-viewport::before{left:0;background:linear-gradient(90deg,var(--green-900),transparent)}
+.reels-viewport::after{right:0;background:linear-gradient(270deg,var(--green-900),transparent)}
+.reels-viewport.can-prev::before,.reels-viewport.can-next::after{opacity:1}
+
+.reels-nav{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+  width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(14,21,9,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  border:1px solid var(--line-strong);color:var(--cream);
+  opacity:0;pointer-events:none;
+  transition:opacity .3s var(--ease),background .3s,color .3s,border-color .3s
+}
+.reels-nav svg{width:18px;height:18px}
+.reels-nav.prev{left:10px}
+.reels-nav.next{right:10px}
+.reels-nav:hover{background:var(--gold);color:var(--green-900);border-color:var(--gold)}
+/* Reveal on hover, or whenever a keyboard lands on them */
+.reels-viewport:hover .reels-nav:not([disabled]),
+.reels-nav:focus-visible{opacity:1;pointer-events:auto}
+.reels-nav[disabled]{opacity:0;pointer-events:none}
+
+/* Touch has swiping, so the arrows would only be in the way */
+@media(hover:none){.reels-nav{display:none}}
 .reel-card{position:relative;display:block;border-radius:var(--radius);overflow:hidden;aspect-ratio:9/16;scroll-snap-align:start;background:var(--green-850)}
 .reel-card img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
 .reel-card:hover img{transform:scale(1.07)}
@@ -561,9 +606,57 @@ a.video-card::after{content:"";position:absolute;inset:0;pointer-events:none;bac
 .reel-play svg{width:15px;height:15px;margin-left:1px}
 .reel-card:hover .reel-play{background:var(--gold);color:var(--green-900);border-color:var(--gold)}
 
-/* ---------- Rotating star ---------- */
-.spin-star{display:inline-block;animation:spin-star 9s linear infinite}
+/* ============================================================
+   BRAND MARK
+   The logo sparkle (assets/icons/varazi-mark.svg), used three ways:
+   a slow-turning accent, a loading spinner, and a bullet / pin.
+   Inline <svg> inherits currentColor; the mask version is for
+   pseudo-elements where there is no element to inline into.
+   ============================================================ */
+@keyframes mark-spin{to{transform:rotate(360deg)}}
+.mark{
+  display:inline-block;flex:none;width:1em;height:1em;background:currentColor;
+  -webkit-mask:url('../icons/varazi-mark.svg') center/contain no-repeat;
+  mask:url('../icons/varazi-mark.svg') center/contain no-repeat;
+}
+
+/* Accent — the slow turn on the story badge */
+.spin-star{animation:spin-star 9s linear infinite}
 @keyframes spin-star{to{transform:rotate(360deg)}}
+
+/* Bullet / pin */
+.mark-bullet{color:var(--gold);width:.6em;height:.6em}
+.mark-pin{color:var(--gold);width:.95em;height:.95em;position:relative;top:.14em}
+
+/* Spinner — for anything actually loading */
+.spinner{width:2rem;height:2rem;color:var(--gold);animation:mark-spin 1.1s linear infinite}
+
+/* Gallery tiles: the mark turns behind an image until it arrives.
+   Only runs while .is-loading is set, so idle tiles cost nothing. */
+.gal-item img{position:relative;z-index:1}
+.gal-item.is-loading::before{
+  content:"";position:absolute;top:50%;left:50%;width:26px;height:26px;margin:-13px 0 0 -13px;z-index:0;
+  background:var(--gold);opacity:.45;
+  -webkit-mask:url('../icons/varazi-mark.svg') center/contain no-repeat;
+  mask:url('../icons/varazi-mark.svg') center/contain no-repeat;
+  animation:mark-spin 1.1s linear infinite;
+}
+
+/* Submit buttons: the arrow becomes the turning mark while sending */
+.btn.is-sending{pointer-events:none}
+.btn.is-sending:hover{transform:none}
+.btn.is-sending .ico svg{opacity:0}
+.btn.is-sending .ico::after{
+  content:"";position:absolute;inset:20%;background:currentColor;
+  -webkit-mask:url('../icons/varazi-mark.svg') center/contain no-repeat;
+  mask:url('../icons/varazi-mark.svg') center/contain no-repeat;
+  animation:mark-spin 1.1s linear infinite;
+}
+
+/* A spinner should still read as "working", so slow it rather than stop it */
+@media(prefers-reduced-motion:reduce){
+  .spinner,.gal-item.is-loading::before,.btn.is-sending .ico::after{animation-duration:3s}
+}
 
 /* ============================================================
    VACANCIES
@@ -571,7 +664,7 @@ a.video-card::after{content:"";position:absolute;inset:0;pointer-events:none;bac
 .vacancy-list{border-top:1px solid var(--line)}
 .vacancy{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.4rem 0;border-bottom:1px solid var(--line);transition:padding .35s var(--ease)}
 .vacancy:hover{padding-left:.8rem}
-.vacancy .v-main h3{font-size:1.15rem;margin-bottom:.25rem}
+.vacancy .v-main h3{font-size:1.15rem;margin-bottom:.25rem;display:flex;align-items:center;gap:.55rem}
 .vacancy .v-main p{font-size:.86rem;color:var(--muted);max-width:60ch}
 .vacancy .v-type{flex:none;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line-strong);padding:.35em .9em;border-radius:999px;white-space:nowrap}
 
