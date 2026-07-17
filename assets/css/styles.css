@@ -607,6 +607,42 @@ a.video-card::after{content:"";position:absolute;inset:0;pointer-events:none;bac
 .reel-card:hover .reel-play{background:var(--gold);color:var(--green-900);border-color:var(--gold)}
 
 /* ============================================================
+   INTRO
+   The mark turns on the deep green, then the whole sheet fades to
+   reveal the page. It is only ever displayed when JS is running and
+   has a CSS failsafe, so a broken script can never hold the site shut.
+   ============================================================ */
+.intro{display:none}
+html.js.intro-on .intro{
+  display:grid;place-items:center;overflow:hidden;   /* clips the mark as it grows past the edges */
+  position:fixed;inset:0;z-index:200;background:var(--green-950);
+  animation:intro-failsafe .6s var(--ease) 4s forwards;
+}
+.intro-mark{
+  width:clamp(56px,9vw,88px);height:clamp(56px,9vw,88px);
+  background:var(--gold);
+  -webkit-mask:url('../icons/varazi-mark.svg') center/contain no-repeat;
+  mask:url('../icons/varazi-mark.svg') center/contain no-repeat;
+  animation:mark-spin 1.7s linear infinite;
+  /* Grown via width/height rather than scale: a transform would just stretch
+     the rasterised mask and the thin arms would go soft at this magnification. */
+  transition:width .6s cubic-bezier(.5,0,.75,0),height .6s cubic-bezier(.5,0,.75,0);
+}
+/* Hold the page still behind the sheet */
+html.js.intro-on:not(.intro-done) body{overflow:hidden}
+
+/* The exit: the mark swells past the edges, then the sheet fades off it */
+html.js.intro-on.intro-done .intro-mark{width:110vmax;height:110vmax}
+html.js.intro-on.intro-done .intro{
+  animation:none;opacity:0;visibility:hidden;
+  transition:opacity .43s var(--ease) .17s,visibility 0s linear .6s;
+}
+@keyframes intro-failsafe{to{opacity:0;visibility:hidden}}
+@media(prefers-reduced-motion:reduce){
+  .intro-mark{animation-duration:4s;transition-duration:.3s}
+}
+
+/* ============================================================
    BRAND MARK
    The logo sparkle (assets/icons/varazi-mark.svg), used three ways:
    a slow-turning accent, a loading spinner, and a bullet / pin.

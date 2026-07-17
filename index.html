@@ -3,14 +3,43 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script>document.documentElement.classList.add('js');(function(){try{var L=localStorage.getItem('varazi-lang')||'en';document.documentElement.lang=L;if(L==='ka')document.documentElement.classList.add('lang-ka');}catch(e){}})();</script>
+<script>document.documentElement.classList.add('js');(function(){var d=document.documentElement;try{var L=localStorage.getItem('varazi-lang')||'en';d.lang=L;if(L==='ka')d.classList.add('lang-ka');}catch(e){}
+/* Intro plays once per browsing session. Add ?intro to any URL to force it. */
+try{if(/[?&]intro\b/.test(location.search)||!sessionStorage.getItem('varazi-intro')){d.classList.add('intro-on');sessionStorage.setItem('varazi-intro','1');}}catch(e){d.classList.add('intro-on');}})();</script>
 <title>Varazi — Georgian Restaurant & Beer Garden, Tbilisi</title>
 <meta name="description" content="Authentic Georgian cuisine and a celebrated beer garden on Varaziskhevi, Tbilisi. Handmade khachapuri & khinkali, mangal grills, craft draughts and Georgian wine since 1995." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="assets/css/styles.css?v=16" />
+<link rel="stylesheet" href="assets/css/styles.css?v=19" />
 </head>
 <body>
+
+<!-- ============ INTRO ============ -->
+<div class="intro" aria-hidden="true"><span class="intro-mark"></span></div>
+<script>
+/* Kept inline and self-contained: the sheet must lift even if main.js
+   never loads. Waits for the page, but never longer than CAP. */
+(function(){
+  var d = document.documentElement;
+  if (!d.classList.contains('intro-on')) return;
+  /* ~1.13s hold + 0.6s exit ≈ 1.73s total. Spin stays at 1.7s/turn, so the
+     mark shows about two-thirds of a rotation before it swells. */
+  var MIN = 1130, CAP = 2130, t0 = Date.now();
+  var hide  = function(){
+    d.classList.add('intro-done');
+    /* Drop the sheet once the swell + fade have finished — visibility:hidden
+       would leave the mark spinning in the render tree for the life of the page. */
+    setTimeout(function(){
+      var el = document.querySelector('.intro');
+      if (el && el.parentNode) el.parentNode.removeChild(el);
+    }, 800);
+  };
+  var ready = function(){ setTimeout(hide, Math.max(0, MIN - (Date.now() - t0))); };
+  if (document.readyState === 'complete') ready();
+  else window.addEventListener('load', ready, { once: true });
+  setTimeout(hide, CAP);
+})();
+</script>
 
 <!-- ============ NAV ============ -->
 <header class="nav">
