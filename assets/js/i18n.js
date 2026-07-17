@@ -400,8 +400,7 @@
 
     /* ---------- Vacancies ---------- */
     "Vacancies": "ვაკანსიები",
-    "Join the": "შემოუერთდი",
-    "Varazi Team": "ვარაზის გუნდს",
+    "Join the Varazi Team": "შემოუერთდი ვარაზის გუნდს",
     "We are always glad to meet people who cook, pour and welcome with heart. Send us a few words about yourself.":
       "ყოველთვის გვიხარია გავიცნოთ ადამიანები, ვინც გულით ამზადებს, ასხამს და მასპინძლობს. მოგვწერე ორიოდე სიტყვა შენს შესახებ.",
     "Mangal Chef": "მანგალის ოსტატი",
