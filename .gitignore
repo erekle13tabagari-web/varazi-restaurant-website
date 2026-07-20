@@ -9,3 +9,18 @@
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Local-only source materials and client documents - never publish
+*.docx
+/brand books/
+/fonts/
+/images/
+/framer/
+
+# Old pre-restructure site copies kept as local archive
+/website/
+/varazi-website.html
+/index.html.html
+/build_deck.py
+/gen_docx.py
+/Varazi-Website-Presentation.pdf

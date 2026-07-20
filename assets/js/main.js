@@ -253,6 +253,108 @@
     window.addEventListener('hashchange', fromHash);
   }
 
+  /* ---- Gallery lightbox: click a photo to enlarge, arrows to browse ---- */
+  const galGrid = document.querySelector('.gal-grid');
+  if (galGrid) {
+    const tiles = [].slice.call(galGrid.querySelectorAll('.gal-item'));
+    const box = document.createElement('div');
+    box.className = 'lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Photo viewer');
+    box.innerHTML =
+      '<button class="lb-btn lb-close" aria-label="Close"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l10 10M13 3 3 13"/></svg></button>' +
+      '<button class="lb-btn lb-prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>' +
+      '<button class="lb-btn lb-next" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>' +
+      '<div class="lb-stage"><div class="lb-frame"><img class="lb-img" alt=""></div>' +
+      '<div class="lb-cap"><span class="lb-title"></span><span class="lb-count"></span>' +
+      '<a class="lb-menu" hidden>View in menu</a></div></div>';
+    document.body.appendChild(box);
+
+    const imgEl = box.querySelector('.lb-img');
+    const titleEl = box.querySelector('.lb-title');
+    const countEl = box.querySelector('.lb-count');
+    const menuEl = box.querySelector('.lb-menu');
+    const prevBtn = box.querySelector('.lb-prev');
+    const nextBtn = box.querySelector('.lb-next');
+
+    let shots = [];   // the tiles the active filter is currently showing
+    let at = 0;
+    let lastFocus = null;
+
+    const show = (i) => {
+      if (!shots.length) return;
+      at = (i + shots.length) % shots.length;
+      const src = shots[at].querySelector('img');
+      const paint = () => imgEl.classList.add('ready');
+      imgEl.classList.remove('ready');
+      imgEl.onload = paint;
+      imgEl.src = src.currentSrc || src.src;
+      imgEl.alt = src.alt || '';
+      if (imgEl.complete) paint();
+      titleEl.textContent = src.alt || '';
+      countEl.textContent = (at + 1) + ' / ' + shots.length;
+      const href = shots[at].getAttribute('href');
+      if (href) { menuEl.href = href; menuEl.hidden = false; } else { menuEl.hidden = true; }
+      const solo = shots.length < 2;
+      prevBtn.hidden = solo;
+      nextBtn.hidden = solo;
+      [1, -1].forEach(d => {            // preload neighbours so arrows feel instant
+        const n = shots[(at + d + shots.length) % shots.length].querySelector('img');
+        if (n) { const pre = new Image(); pre.src = n.currentSrc || n.src; }
+      });
+    };
+
+    const open = (tile) => {
+      shots = tiles.filter(t => !t.hidden);
+      const i = shots.indexOf(tile);
+      if (i < 0) return;
+      lastFocus = document.activeElement;
+      show(i);
+      box.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      nextBtn.focus();
+    };
+    const close = () => {
+      box.classList.remove('open');
+      document.body.style.overflow = '';
+      imgEl.classList.remove('ready');
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    };
+
+    tiles.forEach(t => {
+      if (t.tagName !== 'A') { t.tabIndex = 0; t.setAttribute('role', 'button'); }
+      /* Food tiles are menu links — the lightbox offers that link instead of following it */
+      t.addEventListener('click', (e) => { e.preventDefault(); open(t); });
+      t.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(t); }
+      });
+    });
+
+    prevBtn.addEventListener('click', () => show(at - 1));
+    nextBtn.addEventListener('click', () => show(at + 1));
+    box.querySelector('.lb-close').addEventListener('click', close);
+    box.addEventListener('click', (e) => {          // click the backdrop to dismiss
+      if (e.target === box || e.target.classList.contains('lb-stage') ||
+          e.target.classList.contains('lb-frame') || e.target.classList.contains('lb-cap')) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!box.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') show(at - 1);
+      else if (e.key === 'ArrowRight') show(at + 1);
+    });
+
+    let swipeFrom = null;
+    box.addEventListener('touchstart', (e) => { swipeFrom = e.changedTouches[0].clientX; }, { passive: true });
+    box.addEventListener('touchend', (e) => {
+      if (swipeFrom === null) return;
+      const dx = e.changedTouches[0].clientX - swipeFrom;
+      if (Math.abs(dx) > 45) show(at + (dx < 0 ? 1 : -1));
+      swipeFrom = null;
+    }, { passive: true });
+  }
+
   /* ---- WhatsApp floating contact ---- */
   const waFab = document.querySelector('.wa-fab');
   const waPop = document.querySelector('.wa-pop');
