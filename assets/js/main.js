@@ -388,7 +388,9 @@
         const mp4 = card.dataset.video, yt = card.dataset.youtube, reel = card.dataset.reel;
         frame.className = 'vbox-frame' + (card.dataset.wide === 'true' ? ' wide' : '') + (reel ? ' ig' : '');
         if (mp4) {
-          frame.innerHTML = '<video controls autoplay playsinline src="' + mp4 + '"></video>';
+          /* The click on the tile is the user gesture, so this is allowed to
+             start with sound. Short clips loop the way they do on Instagram. */
+          frame.innerHTML = '<video controls autoplay loop playsinline preload="auto" src="' + mp4 + '"></video>';
         } else if (yt) {
           frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + yt +
             '?autoplay=1&rel=0" title="Varazi video" allow="autoplay; encrypted-media; picture-in-picture; web-share"' +
