@@ -573,6 +573,9 @@ html.lang-ka .footer .brand-logo{width:126px}
 
 /* ---------- Gallery: video ---------- */
 .video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+/* Gallery video tab: one landscape feature, then the vertical reels — same cards as the home page */
+.video-feature{max-width:840px;margin:0 auto clamp(1.2rem,2.5vw,2rem)}
+.reel-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
 .video-card{position:relative;display:block;border-radius:var(--radius);overflow:hidden;aspect-ratio:16/9;background:var(--green-900);border:1px solid var(--line)}
 .video-card img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
 .video-card:hover img{transform:scale(1.06)}
@@ -588,6 +591,16 @@ a.video-card::after{content:"";position:absolute;inset:0;pointer-events:none;bac
 .video-play svg{width:22px;height:22px;margin-left:2px}
 .video-card:hover .video-play{transform:translate(-50%,-50%) scale(1.1);background:var(--gold)}
 .video-cap{position:absolute;left:1.1rem;right:1.1rem;bottom:.9rem;z-index:2;font-size:.9rem;color:var(--cream);font-family:var(--serif)}
+/* Clips play here on the site instead of opening Instagram.
+   Reels are vertical, so the frame defaults to 9:16 and widens for landscape clips. */
+.vbox-frame{
+  width:min(420px,92vw);aspect-ratio:9/16;max-height:84vh;
+  border-radius:var(--radius);overflow:hidden;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.6)
+}
+.vbox-frame.wide{width:min(980px,92vw);aspect-ratio:16/9}
+/* Instagram supplies its own chrome and white background — give it room instead of a fixed ratio */
+.vbox-frame.ig{width:min(400px,92vw);aspect-ratio:auto;height:min(84vh,720px);background:#fff}
+.vbox-frame iframe,.vbox-frame video{width:100%;height:100%;border:0;display:block}
 
 /* ============================================================
    INSTAGRAM REELS
@@ -828,6 +841,7 @@ html.js .reveal.in{opacity:1;transform:none}
   .menu-feature-img{aspect-ratio:16/10}
   .gal-grid{grid-template-columns:repeat(3,1fr)}
   .video-grid{grid-template-columns:repeat(2,1fr)}
+  .reel-grid{grid-template-columns:repeat(3,1fr)}
   .vacancy{flex-direction:column;align-items:flex-start;gap:.6rem}
 }
 @media(max-width:560px){
@@ -840,6 +854,7 @@ html.js .reveal.in{opacity:1;transform:none}
   html.lang-ka .section-title{font-size:1.4rem}
   .gal-grid{grid-template-columns:repeat(2,1fr)}
   .video-grid{grid-template-columns:1fr}
+  .reel-grid{grid-template-columns:repeat(2,1fr)}
   /* three tall photos would run very long on a phone — go one-up and wide */
   .gallery-row.trio{grid-template-columns:1fr}
   .gallery-row.trio figure{aspect-ratio:16/10}

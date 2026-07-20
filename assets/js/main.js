@@ -355,6 +355,72 @@
     }, { passive: true });
   }
 
+  /* ---- Reels & clips play on the site instead of opening Instagram ----
+     A tile plays inline as soon as it carries one of these attributes:
+       data-video="assets/video/clip.mp4"   self-hosted file  (most reliable)
+       data-youtube="VIDEO_ID"              YouTube / Shorts
+       data-reel="REEL_ID"                  Instagram reel
+     Tiles with none of them keep their existing link-out behaviour. */
+  {
+    const players = [].slice.call(document.querySelectorAll('[data-video],[data-youtube],[data-reel]'));
+    if (players.length) {
+      const modal = document.createElement('div');
+      modal.className = 'lightbox vbox';
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-label', 'Video player');
+      modal.innerHTML =
+        '<button class="lb-btn lb-close" aria-label="Close"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l10 10M13 3 3 13"/></svg></button>' +
+        '<div class="vbox-frame"></div>';
+      document.body.appendChild(modal);
+
+      const frame = modal.querySelector('.vbox-frame');
+      let lastFocus = null;
+
+      const stop = () => {
+        modal.classList.remove('open');
+        frame.innerHTML = '';                 // removing the player is what stops the sound
+        document.body.style.overflow = '';
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      };
+
+      const play = (card) => {
+        const mp4 = card.dataset.video, yt = card.dataset.youtube, reel = card.dataset.reel;
+        frame.className = 'vbox-frame' + (card.dataset.wide === 'true' ? ' wide' : '') + (reel ? ' ig' : '');
+        if (mp4) {
+          frame.innerHTML = '<video controls autoplay playsinline src="' + mp4 + '"></video>';
+        } else if (yt) {
+          frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + yt +
+            '?autoplay=1&rel=0" title="Varazi video" allow="autoplay; encrypted-media; picture-in-picture; web-share"' +
+            ' allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+        } else if (reel) {
+          frame.innerHTML = '<iframe src="https://www.instagram.com/reel/' + reel +
+            '/embed/" title="Varazi reel" allowtransparency="true" allowfullscreen' +
+            ' referrerpolicy="strict-origin-when-cross-origin" scrolling="no"></iframe>';
+        }
+        lastFocus = document.activeElement;
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        modal.querySelector('.lb-close').focus();
+      };
+
+      players.forEach(card => {
+        card.style.cursor = 'pointer';
+        if (card.tagName !== 'A') { card.tabIndex = 0; card.setAttribute('role', 'button'); }
+        card.addEventListener('click', (e) => { e.preventDefault(); play(card); });
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(card); }
+        });
+      });
+
+      modal.querySelector('.lb-close').addEventListener('click', stop);
+      modal.addEventListener('click', (e) => { if (e.target === modal) stop(); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) stop();
+      });
+    }
+  }
+
   /* ---- WhatsApp floating contact ---- */
   const waFab = document.querySelector('.wa-fab');
   const waPop = document.querySelector('.wa-pop');

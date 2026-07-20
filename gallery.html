@@ -117,13 +117,19 @@
     <!-- ---------- VIDEO ---------- -->
     <div class="gal-panel" id="video">
       <p class="gal-note reveal">Reels and clips from our Instagram and YouTube.</p>
-      <div class="video-grid reveal">
-        <!--
-          TO ADD ANOTHER VIDEO: copy the <div class="video-card"><iframe ...> block below and swap the id.
-          YouTube:        https://www.youtube-nocookie.com/embed/VIDEO_ID
-          Instagram reel: https://www.instagram.com/reel/REEL_ID/embed
-          The remaining <a class="video-card"> tiles are posters that open our Instagram until real clips are supplied.
-        -->
+      <!--
+        TO ADD A CLIP: copy a card below and give it ONE of these attributes — it then
+        plays in a player on this page instead of opening Instagram:
+
+          data-reel="REEL_ID"                 from instagram.com/reel/REEL_ID/
+          data-youtube="VIDEO_ID"             from youtu.be/VIDEO_ID  (also works for Shorts)
+          data-video="assets/video/clip.mp4"  a file we host ourselves — most reliable
+          add data-wide="true" for landscape clips; without it the player is vertical (9:16)
+
+        Cover images live in assets/img as reel-REEL_ID.jpg — they are the real cover
+        frames pulled from the posts. A card with no data- attribute simply opens its href.
+      -->
+      <div class="video-feature reveal">
         <div class="video-card">
           <iframe src="https://www.youtube-nocookie.com/embed/frpJt1A5dTw"
                   title="თბილისი. რესტორანი &quot;ვარაზი&quot;. ლაზური ხახამურის დაგემოვნება."
@@ -131,30 +137,32 @@
                   allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
-        <a class="video-card" href="https://www.instagram.com/restaurantvarazi/" target="_blank" rel="noopener" aria-label="Watch on Instagram">
-          <img src="assets/img/pork-mcvadi.jpg" alt="Mtsvadi on the mangal" loading="lazy">
-          <span class="video-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="video-cap">Fire &amp; Smoke: The Mangal</span>
+      </div>
+      <div class="reel-grid reveal">
+        <a class="reel-card" data-reel="DaDz1dRgQX_" href="https://www.instagram.com/reel/DaDz1dRgQX_/" target="_blank" rel="noopener" aria-label="Play reel: a walk through Varazi">
+          <img src="assets/img/reel-DaDz1dRgQX_.jpg" alt="A walk through Varazi" loading="lazy">
+          <span class="reel-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="video-cap">A Walk Through Varazi</span>
         </a>
-        <a class="video-card" href="https://www.instagram.com/restaurantvarazi/" target="_blank" rel="noopener" aria-label="Watch on Instagram">
-          <img src="assets/img/khinkali-2.jpg" alt="Folding khinkali by hand" loading="lazy">
-          <span class="video-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="video-cap">Folding Khinkali by Hand</span>
+        <a class="reel-card" data-reel="DYuz6auAfjJ" href="https://www.instagram.com/reel/DYuz6auAfjJ/" target="_blank" rel="noopener" aria-label="Play reel: the bar and the taps">
+          <img src="assets/img/reel-DYuz6auAfjJ.jpg" alt="The bar and the taps" loading="lazy">
+          <span class="reel-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="video-cap">The Bar &amp; the Taps</span>
         </a>
-        <a class="video-card" href="https://www.instagram.com/restaurantvarazi/" target="_blank" rel="noopener" aria-label="Watch on Instagram">
-          <img src="assets/img/beer-3.jpg" alt="Pouring a fresh draught" loading="lazy">
-          <span class="video-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="video-cap">The Perfect Pour</span>
+        <a class="reel-card" data-reel="DSrkaOCjQVg" href="https://www.instagram.com/reel/DSrkaOCjQVg/" target="_blank" rel="noopener" aria-label="Play reel: festive nights at Varazi">
+          <img src="assets/img/reel-DSrkaOCjQVg.jpg" alt="Festive nights at Varazi" loading="lazy">
+          <span class="reel-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="video-cap">Festive Nights at Varazi</span>
         </a>
-        <a class="video-card" href="https://www.instagram.com/restaurantvarazi/" target="_blank" rel="noopener" aria-label="Watch on Instagram">
-          <img src="assets/img/khachapuri-megruli4.jpg" alt="Megruli khachapuri from the oven" loading="lazy">
-          <span class="video-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="video-cap">Khachapuri, Straight from the Oven</span>
+        <a class="reel-card" data-reel="DM76ACONg3S" href="https://www.instagram.com/reel/DM76ACONg3S/" target="_blank" rel="noopener" aria-label="Play reel: cocktail craft">
+          <img src="assets/img/reel-DM76ACONg3S.jpg" alt="Cocktail craft at the bar" loading="lazy">
+          <span class="reel-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="video-cap">Cocktail Craft</span>
         </a>
-        <a class="video-card" href="https://www.instagram.com/restaurantvarazi/" target="_blank" rel="noopener" aria-label="Watch on Instagram">
-          <img src="assets/img/sufra-3.jpg" alt="A full Georgian sufra" loading="lazy">
-          <span class="video-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="video-cap">A Sufra at Varazi</span>
+        <a class="reel-card" data-reel="DMPwPAgt8Sh" href="https://www.instagram.com/reel/DMPwPAgt8Sh/" target="_blank" rel="noopener" aria-label="Play reel: plated in the kitchen">
+          <img src="assets/img/reel-DMPwPAgt8Sh.jpg" alt="Plated in the kitchen" loading="lazy">
+          <span class="reel-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="video-cap">Plated in the Kitchen</span>
         </a>
       </div>
     </div>
