@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script>document.documentElement.classList.add('js');(function(){var d=document.documentElement;try{var L=localStorage.getItem('varazi-lang')||'en';d.lang=L;if(L==='ka')d.classList.add('lang-ka');}catch(e){}
-/* Intro plays once per browsing session. Add ?intro to any URL to force it. */
-try{if(/[?&]intro\b/.test(location.search)||!sessionStorage.getItem('varazi-intro')){d.classList.add('intro-on');sessionStorage.setItem('varazi-intro','1');}}catch(e){d.classList.add('intro-on');}})();</script>
+/* Intro plays on every load of the home page, refreshes included. */
+d.classList.add('intro-on');})();</script>
 <title>Varazi — Georgian Restaurant & Beer Garden, Tbilisi</title>
 <meta name="description" content="Authentic Georgian cuisine and a celebrated beer garden on Varaziskhevi, Tbilisi. Handmade khachapuri & khinkali, mangal grills, craft draughts and Georgian wine since 1995." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
