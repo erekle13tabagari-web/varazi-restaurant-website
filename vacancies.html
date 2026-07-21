@@ -57,10 +57,15 @@
 <section class="section-pad">
   <div class="wrap">
     <div class="vacancy-list reveal">
-      <div class="vacancy">
+      <!-- A vacancy with its own page: give it <a class="vacancy" href="..."> and the
+           .v-side wrapper below. Rows without a page stay as plain <div class="vacancy">. -->
+      <a class="vacancy" href="vacancy-mangal-chef.html">
         <div class="v-main"><h3><span class="mark mark-bullet" aria-hidden="true"></span>Mangal Chef</h3><p>Live-fire grilling on the open mangal, evening shifts. Experience with mtsvadi and kebab preferred.</p></div>
-        <span class="v-type">Full time</span>
-      </div>
+        <span class="v-side">
+          <span class="v-type">Full time</span>
+          <span class="v-go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M6 4h6v6"/></svg></span>
+        </span>
+      </a>
       <div class="vacancy">
         <div class="v-main"><h3><span class="mark mark-bullet" aria-hidden="true"></span>Waiter / Waitress</h3><p>Garden and hall service. Georgian and English welcome — a warm welcome matters most.</p></div>
         <span class="v-type">Full / Part time</span>
@@ -164,7 +169,7 @@
   } else { showAll(); }
 })();
 </script>
-<script src="assets/js/i18n.js?v=3"></script>
+<script src="assets/js/i18n.js?v=4"></script>
 <script src="assets/js/main.js?v=8"></script>
 </body>
 </html>

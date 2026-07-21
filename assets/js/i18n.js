@@ -419,6 +419,64 @@
     "Full / Part time": "სრული / ნახევარი განაკვეთი",
     "Send Your CV": "გამოგზავნე CV",
 
+    /* ---------- Single vacancy page ---------- */
+    "Vacancy": "ვაკანსია",
+    "All vacancies": "ყველა ვაკანსია",
+    "Live fire, vine-wood smoke and the busiest station in the garden.":
+      "ღია ცეცხლი, ვაზის შეშის კვამლი და ბაღის ყველაზე დატვირთული სამუშაო ადგილი.",
+    "Employment": "დასაქმება",
+    "Schedule": "გრაფიკი",
+    "Evening shifts, 5 days": "საღამოს ცვლები, 5 დღე",
+    "Experience": "გამოცდილება",
+    "2+ years on the grill": "2+ წელი მანგალზე",
+    "Location": "მისამართი",
+    "1 Varaziskhevi St, Tbilisi": "ვარაზისხევის ქუჩა 1, თბილისი",
+
+    "About the role": "პოზიციის შესახებ",
+    "The mangal is the heart of the Varazi garden — the first thing our guests smell when they walk in from Varaziskhevi. We are looking for a chef to own that station: mtsvadi, kebabs and prime steaks cooked over open flame and vine-wood, every evening, with the consistency that keeps people coming back for thirty years.":
+      "მანგალი ვარაზის ბაღის გულია — პირველი, რასაც სტუმრები ვარაზისხევიდან შემოსვლისას იგრძნობენ. ვეძებთ ოსტატს, რომელიც ამ ადგილს სრულად ჩაიბარებს: მწვადი, ქაბაბი და სტეიკები ღია ცეცხლსა და ვაზის შეშაზე, ყოველ საღამოს, იმ ხარისხით, რაც ოცდაათი წელია ხალხს გვიბრუნებს.",
+    "You will work alongside our executive chef and a small, steady kitchen team. Evenings are busy and the garden fills quickly in summer, so a calm head at the grill matters more to us than a long CV.":
+      "იმუშავებ შეფ-მზარეულთან და მცირე, გამოცდილ გუნდთან ერთად. საღამოები დატვირთულია და ზაფხულში ბაღი სწრაფად ივსება, ამიტომ მშვიდი თავი მანგალთან ჩვენთვის გრძელ CV-ზე მნიშვნელოვანია.",
+
+    "What you will do": "რას აკეთებ",
+    "Run the open mangal through evening service — mtsvadi, kebabs, steaks and seasonal grilled vegetables.":
+      "მართავ ღია მანგალს საღამოს სერვისის განმავლობაში — მწვადი, ქაბაბი, სტეიკები და სეზონური შემწვარი ბოსტნეული.",
+    "Manage the fire: build it, feed it with vine-wood and hold the heat steady across a full service.":
+      "უვლი ცეცხლს: ანთებ, ამატებ ვაზის შეშას და ინარჩუნებ სტაბილურ სიცხეს მთელი სერვისის განმავლობაში.",
+    "Marinate and prep meat daily to our recipes, checking quality on delivery.":
+      "ყოველდღიურად ამარინადებ და ამზადებ ხორცს ჩვენი რეცეპტებით, ამოწმებ ხარისხს მიღებისას.",
+    "Keep the station clean and to standard, and close it down properly at the end of the night.":
+      "ინარჩუნებ სამუშაო ადგილს სუფთად და სტანდარტის შესაბამისად, საღამოს ბოლოს კი წესრიგში აბარებ.",
+    "Work with the kitchen team so grill dishes land with the rest of the table, not before or after it.":
+      "მუშაობ გუნდთან ისე, რომ მანგალის კერძები სუფრას სხვა კერძებთან ერთად მიუტანონ და არა ადრე ან გვიან.",
+
+    "What we are looking for": "ვის ვეძებთ",
+    "Two years or more cooking over live fire — Georgian mangal experience is ideal, other grill work counts.":
+      "ორი ან მეტი წლის გამოცდილება ღია ცეცხლზე — ქართული მანგალი იდეალურია, სხვა სახის მანგალიც ჩაითვლება.",
+    "A feel for fire and timing: knowing by eye and smell when meat is ready, not only by the clock.":
+      "ცეცხლისა და დროის შეგრძნება: თვალითა და სუნით მიხვდე, როდის არის ხორცი მზად და არა მხოლოდ საათით.",
+    "Reliability through a busy evening service, especially on weekends.":
+      "საიმედოობა დატვირთული საღამოს განმავლობაში, განსაკუთრებით შაბათ-კვირას.",
+    "Georgian language; English or Russian is a bonus but not required.":
+      "ქართული ენა; ინგლისური ან რუსული პლიუსია, თუმცა სავალდებულო არაა.",
+    "Food safety and hygiene certification, or willingness to obtain one with us.":
+      "სურსათის უსაფრთხოებისა და ჰიგიენის სერტიფიკატი ან სურვილი, რომ ის ჩვენთან ერთად მოიპოვო.",
+
+    "What we offer": "რას გთავაზობთ",
+    "Competitive salary, discussed at interview and paid on time, every month.":
+      "კონკურენტული ხელფასი, შეთანხმებული გასაუბრებაზე და გაცემული დროულად, ყოველთვიურად.",
+    "Staff meals on every shift and a share of tips.":
+      "კვება ყოველ ცვლაზე და ჩაის ფულის წილი.",
+    "A settled team — many of our kitchen have been with Varazi for years.":
+      "მდგრადი გუნდი — სამზარეულოს ბევრი თანამშრომელი წლებია ვარაზშია.",
+    "Paid annual leave and a schedule agreed in advance, not week to week.":
+      "ანაზღაურებადი შვებულება და წინასწარ შეთანხმებული გრაფიკი, და არა კვირიდან კვირამდე.",
+
+    "Interested?": "დაინტერესდი?",
+    "Send us a few words about yourself and where you have cooked. A CV is welcome but not essential — we would rather hear about your fire.":
+      "მოგვწერე ორიოდე სიტყვა შენსა და იმის შესახებ, სად გიმუშავია. CV სასურველია, თუმცა სავალდებულო არაა — გვირჩევნია შენს ცეცხლზე მოვისმინოთ.",
+    "Apply for This Role": "განაცხადის გაგზავნა",
+
     /* ---------- Drinks (split menu) ---------- */
     "Beer, Wine & Spirits": "ლუდი, ღვინო და სპირტიანი",
     "Soft Drinks": "უალკოჰოლო",

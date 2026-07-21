@@ -678,8 +678,10 @@ html.js.intro-on .intro{
    deliberately kept apart: if both rode on `transform`, cancelling the
    animation at exit would reset the turn to 0deg and the mark would visibly
    jump backwards. Kept separate, the turn simply carries on through the fade. */
+/* Sized against BOTH axes (not vmax) so the whole mark stays on screen —
+   on a tall phone vmax follows the height and the arms get cropped. */
 .intro-mark{
-  width:104vmax;height:104vmax;
+  width:min(92vw,74vh);height:min(92vw,74vh);
   background:url('../img/intro-symbol.svg') center/contain no-repeat;
   rotate:0deg;
   animation:intro-turn 3.1s cubic-bezier(.4,0,.25,1) forwards;
@@ -766,6 +768,38 @@ html.js.intro-on.intro-done .intro{
 .vacancy .v-main h3{font-size:1.15rem;margin-bottom:.25rem;display:flex;align-items:center;gap:.55rem}
 .vacancy .v-main p{font-size:.86rem;color:var(--muted);max-width:60ch}
 .vacancy .v-type{flex:none;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line-strong);padding:.35em .9em;border-radius:999px;white-space:nowrap}
+/* A listing that has its own detail page becomes a link and shows an arrow */
+a.vacancy{text-decoration:none;color:inherit}
+a.vacancy .v-side{display:flex;align-items:center;gap:1rem;flex:none}
+a.vacancy .v-go{
+  width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex:none;
+  border:1px solid var(--line-strong);color:var(--gold);transition:.35s var(--ease)
+}
+a.vacancy .v-go svg{width:14px;height:14px}
+a.vacancy:hover .v-go{background:var(--gold);color:var(--green-900);border-color:var(--gold)}
+a.vacancy:hover h3{color:var(--gold)}
+
+/* ---------- Single vacancy page ---------- */
+.v-meta{display:flex;flex-wrap:wrap;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:clamp(2rem,4vw,3rem)}
+.v-meta div{flex:1 1 180px;background:var(--green-900);padding:1.3rem 1.5rem}
+.v-meta dt{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.v-meta dd{font-size:1rem;color:var(--cream);font-family:var(--serif)}
+.v-body{max-width:70ch}
+.v-body h2{font-size:1.35rem;color:var(--cream);margin:clamp(2rem,3.5vw,2.8rem) 0 .9rem}
+.v-body h2:first-child{margin-top:0}
+.v-body p{color:var(--text);font-size:.98rem;margin-bottom:1rem;line-height:1.75}
+.v-body ul{list-style:none;margin-bottom:1rem}
+.v-body li{position:relative;padding-left:1.6rem;margin-bottom:.7rem;color:var(--text);font-size:.98rem;line-height:1.7}
+.v-body li::before{content:"";position:absolute;left:.15rem;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.v-apply{
+  margin-top:clamp(2.4rem,4vw,3.4rem);padding:clamp(1.6rem,3vw,2.4rem);
+  border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--green-900)
+}
+.v-apply h3{font-size:1.2rem;margin-bottom:.6rem}
+.v-apply p{color:var(--muted);font-size:.9rem;margin-bottom:1.4rem;max-width:52ch}
+.v-back{display:inline-flex;align-items:center;gap:.5rem;color:var(--muted);font-size:.88rem;margin-bottom:1.6rem;transition:color .3s}
+.v-back:hover{color:var(--gold)}
+.v-back svg{width:15px;height:15px}
 
 /* ============================================================
    WHATSAPP FLOATING CONTACT
